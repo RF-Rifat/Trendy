@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Abercrombie & Fitch",
+    "imageSrc": "//swap.com/cdn/shop/collections/Abercrombie-and-Fitch-logo-500x256.png?v=1676672363&amp;width=512",
+    "description": "TRENDY, CASUAL APPAREL & SHOES",
+    "category": "blouses, jackets, skirts, shorts and more."
+  },
+  {
+    "name": "Adidas",
+    "imageSrc": "//swap.com/cdn/shop/collections/Adidas_Logo.png?v=1679422410&amp;width=512",
+    "description": "HIGH END, ATHLETIC APPAREL & SHOES",
+    "category": "running shoes, cleats, athletic shorts, t-shirts and more."
+  },
+  {
+    "name": "Aerie",
+    "imageSrc": "//swap.com/cdn/shop/collections/640px-Aerie_logo_svg.png?v=1680530114&amp;width=512",
+    "description": "TRENDY, CASUAL WEAR",
+    "category": "shorts, pants, swimwear, rompers and more."
+  },
+  {
+    "name": "Aeropostale",
+    "imageSrc": "//swap.com/cdn/shop/collections/Aeropostale_logo_svg.png?v=1680533011&amp;width=512",
+    "description": "TRENDY, CASUAL WEAR",
+    "category": "skirts, shorts, t-shirts, polos, dresses and more."
+  },
+  {
+    "name": "Allbirds",
+    "imageSrc": "//swap.com/cdn/shop/collections/Allbirds_logo.png?v=1680275141&amp;width=512",
+    "description": "HIGH END, ATHLETIC APPAREL & SHOES",
+    "category": "running shoes, cleats, athletic shorts, t-shirts and more."
+  },
+  {
+    "name": "American Eagle",
+    "imageSrc": "//swap.com/cdn/shop/collections/Screen_Shot_2023-04-03_at_2.40.12_PM.png?v=1680551005&amp;width=512",
+    "description": "TRENDY, CASUAL WEAR",
+    "category": "t-shirts, blouses, crop-tops, sweaters, cardigans, jeans and more."
+  },
+  {
+    "name": "Ann Taylor",
+    "imageSrc": "//swap.com/cdn/shop/collections/67f63f3c1454c13b803846c96e701ed9.png?v=1678125599&amp;width=512",
+    "description": "HIGH END, FORMAL & CASUAL APPAREL",
+    "category": "running shoes, cleats, athletic shorts, t-shirts and more."
+  },
+  {
+    "name": "Banana Republic",
+    "imageSrc": "//swap.com/cdn/shop/collections/Banana-Republic-logo.png?v=1678127340&amp;width=512",
+    "description": "HIGH END, LUXURY MENS APPAREL & SHOES",
+    "category": "blouses, jeans, dresses, and more."
+  },
+  {
+    "name": "Billabong",
+    "imageSrc": "//swap.com/cdn/shop/collections/Billabong-Logo.jpg?v=1680618413&amp;width=512",
+    "description": "TRENDY, CASUAL APPAREL & SHOES",
+    "category": "sweaters, dresses, shorts, and more."
+  },
+  {
+    "name": "Birkenstock",
+    "imageSrc": "//swap.com/cdn/shop/collections/birkenstock-30839.svg?v=1678126141&amp;width=512",
+    "description": "HIGH END, LUXURY CASUAL SHOES",
+    "category": "sandals, slides, mules, and more."
+  },
+  {
+    "name": "Brandy Melville",
+    "imageSrc": "//swap.com/cdn/shop/collections/Brendy-Melville-Logo.png?v=1680531240&amp;width=512",
+    "description": "TRENDY, CASUAL WEAR",
+    "category": "t-shirts, crop-tops, skirts, and more."
+  },
+  {
+    "name": "Calvin Klein",
+    "imageSrc": "//swap.com/cdn/shop/collections/Calvin-Klein-Logo-1992.png?v=1680533721&amp;width=512",
+    "description": "SOPHISTICATED, MODERN CASUAL WEAR",
+    "category": "blouses, skirts, jeans, pants, and more."
+  },
+  {
+    "name": "Champion",
+    "imageSrc": "//swap.com/cdn/shop/collections/Champion-Logo-700x394.png?v=1676671742&amp;width=512",
+    "description": "TRENDY, ATHLETIC APPAREL & SHOES",
+    "category": "t-shirts, team wear, sweatshirts, athletic shoes, and more."
+  },
+  {
+    "name": "Chico's",
+    "imageSrc": "//swap.com/cdn/shop/collections/chicos.png?v=1679424981&amp;width=512",
+    "description": "SOPHISTICATED, FORMAL & CASUAL WOMEN'S APPAREL",
+    "category": "Dresses, jackets, blouses, jeans, and more."
+  },
+  {
+    "name": "Crocs",
+    "imageSrc": "//swap.com/cdn/shop/collections/20.png?v=1682553915&amp;width=512",
+    "description": "TRENDY, CASUAL APPAREL",
+    "category": "sandals, clogs, casual pants, and more."
+  },
+  {
+    "name": "Dolce Vita",
+    "imageSrc": "//swap.com/cdn/shop/collections/dolcebita-240x120.png?v=1680280813&amp;width=512",
+    "description": "HIGH END, TRENDY WOMENS SHOES",
+    "category": "running shoes, cleats, athletic shorts, t-shirts, and more."
+  },
+  {
+    "name": "Express",
+    "imageSrc": "//swap.com/cdn/shop/collections/1200px-Express__Inc__logo_svg.png?v=1678127716&amp;width=512",
+    "description": "HIGH END, LUXURY & CASUAL APPAREL",
+    "category": "dresses, blouses, jeans, jumpsuits, and more."
+  },
+  {
+    "name": "Forever 21",
+    "imageSrc": "//swap.com/cdn/shop/collections/Forever-21-logo.png?v=1680531415&amp;width=512",
+    "description": "TRENDY, CASUAL WEAR",
+    "category": "shorts, pants, blouses, rompers, and more."
+  }
+]

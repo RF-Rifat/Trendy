@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Navbar,
   Typography,
   Button,
   Menu,
@@ -27,18 +26,22 @@ import { Link, NavLink } from "react-router-dom";
 const profileMenuItems = [
   {
     label: "My Profile",
+    link: "/",
     icon: UserCircleIcon,
   },
   {
     label: "Edit Profile",
+    link: "/",
     icon: Cog6ToothIcon,
   },
   {
     label: "Inbox",
+    link: "/",
     icon: InboxArrowDownIcon,
   },
   {
     label: "Sign Out",
+    link: "/",
     icon: PowerIcon,
   },
 ];
@@ -108,32 +111,55 @@ function ProfileMenu() {
 const navListItems = [
   {
     label: "Home",
+    link: "/",
     icon: UserCircleIcon,
   },
   {
     label: "Women",
+    link: "/",
     icon: CubeTransparentIcon,
   },
   {
     label: "Jewelry",
+    link: "/",
     icon: CodeBracketSquareIcon,
   },
 ];
 
 function NavList() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navbarColor = isScrolled ? "text-white" : "text-blue-gray-900";
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
       {navListItems.map(({ label, icon }) => (
-        <NavLink to={`/${label}`} key={label}>
+        <NavLink to={`/${label}`} key={label} className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""}>
           <Typography
             as="NavLink"
             variant="small"
             color="gray"
-            className="font-medium text-blue-gray-500"
+            className={`font-medium text-lg text-blue-gray-500 ${navbarColor}`}
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
               {React.createElement(icon, { className: "h-[18px] w-[18px]" })}{" "}
-              <span className="text-gray-900"> {label}</span>
+              <span className=""> {label}</span>
             </MenuItem>
           </Typography>
         </NavLink>
@@ -148,46 +174,64 @@ export function ComplexNavbar() {
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navbarBgColor = isScrolled ? "bg-[#3498DB]" : "bg-transparent";
+
   return (
     <>
-      <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6">
-        <div className="mx-auto flex items-center justify-between text-blue-gray-900 gap-3">
-          <Link
-            as="a"
-            to={"/"}
-            className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
-          >
-            <img className="h-12 " src="Logo.png" alt="logo" />
-          </Link>
-          <div className="hidden lg:block">
-            <NavList />
-          </div>
-          <IconButton
-            size="sm"
-            color="blue-gray"
-            variant="text"
-            onClick={openDrawer}
-            className="ml-auto mr-2 lg:hidden"
-          >
-            <Bars2Icon className="h-6 w-6" />
-          </IconButton>
+      <nav className={`z-40 w-full p-2 lg:pl-6 sticky h-20 top-0 ${navbarBgColor}`}>
+        <div className="mx-auto">
+          <div className="mx-auto flex items-center justify-between text-blue-gray-900 gap-3">
+            <Link
+              as="a"
+              to={"/"}
+              className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
+            >
+              <img className="h-12 " src="/Logo.png" alt="logo" />
+            </Link>
+            <div className="hidden lg:block">
+              <NavList />
+            </div>
+            <IconButton
+              size="sm"
+              color="black-gray"
+              variant="text"
+              onClick={openDrawer}
+              className="ml-auto mr-2 lg:hidden"
+            >
+              <Bars2Icon className={open ? "h-6 w-6 rotate-90" : "h-6 w-6"} />
+            </IconButton>
 
-          <div className="flex gap-3">
-            <Button size="sm">
-              <span>Log In</span>
-            </Button>
-            <ProfileMenu />
+            <div className="flex gap-3">
+              <Button size="sm">
+                <span>Log In</span>
+              </Button>
+              <ProfileMenu />
+            </div>
           </div>
         </div>
-        {/* <MobileNav open={isNavOpen} className="overflow-scroll">
-          <NavList />
-        </MobileNav> */}
-      </Navbar>
+      </nav>
 
-      <Drawer open={open} onClose={closeDrawer} className="p-4">
+      <Drawer open={open} onClose={closeDrawer} className="p-4 lg:hidden bg-[#3498DB]">
         <div className="mb-6 flex items-center justify-between">
           <Link
-            as="a"
             to={"/"}
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
           >

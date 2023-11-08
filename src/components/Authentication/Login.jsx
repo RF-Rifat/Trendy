@@ -10,8 +10,7 @@ const Login = () => {
   const location = useLocation();
   const userLocation = location.state || "/";
   console.log(userLocation);
-  const { login, signWithGooglePop } =
-    useContext(AuthProvider);
+  const { login, signWithGooglePop } = useContext(AuthProvider);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const handleSubmit = (event) => {
@@ -103,7 +102,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>FOODIE | Login</title>
+        <title>TRENDY | Login</title>
       </Helmet>
       <div className="bg-transparent absolute w-full text-yellow-400 px-6 lg:px-20">
         <Navbar></Navbar>

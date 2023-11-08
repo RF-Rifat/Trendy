@@ -1,19 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 import PageTransition from "../FramerMotion/PageTransition";
-import Home from "../Page/Home";
+
 import Layout from "../Layout";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../ErrorPage";
 import SignUp from "../Authentication/SignUp";
 import Login from "../Authentication/Login";
+import Home from "../Page/Home/Home";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Home",
     element: <Layout></Layout>,
     children: [
       {
-        path: "/",
+        path: "/Home",
         element: <Home></Home>,
         loader: () => fetch("/brandData.json"),
       },

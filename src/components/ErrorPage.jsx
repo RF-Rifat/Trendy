@@ -8,22 +8,22 @@ function ErrorPage() {
             <div className="flex -mx-4">
               <div className="w-full px-4">
                 <div className="mx-auto max-w-[400px] text-center">
-                  <h2 className="mb-2 text-[50px] font-bold leading-none text-white sm:text-[80px] md:text-[100px]">
+                  <h2 className="mb-2 text-[50px] font-bold leading-none sm:text-[80px] md:text-[100px]">
                     404
                   </h2>
-                  <h4 className="mb-3 text-[22px] font-semibold leading-tight text-white">
+                  <h4 className="mb-3 text-[22px] font-semibold leading-tight">
                     Oops! That page can&apos;t be found
                   </h4>
-                  <p className="mb-8 text-lg text-white">
+                  <p className="mb-8 text-lg">
                     The page you are looking for it maybe deleted
                   </p>
-                  <p className="text-lg text-white mb-4">
+                  <p className="text-lg mb-4">
                     Here are some helpful links:
                   </p>
                   <div className="space-y-4">
                     <Link
                       to="/"
-                      className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300"
+                      className="bg-blue-500 py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300"
                     >
                       Home
                     </Link>

@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom";
+import { ComplexNavbar } from "./Shared/Navbar";
+import Footer from "./Shared/Footer";
 
 const Layout = () => {
   return (
     <>
-      <div className="sticky w-full px-6 lg:px-20">
+      <div className="max-w-screen-2xl mx-auto">
+        <ComplexNavbar></ComplexNavbar>
         <Outlet></Outlet>
+        <Footer></Footer>
       </div>
     </>
   );
