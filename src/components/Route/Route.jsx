@@ -10,11 +10,11 @@ import Home from "../Page/Home/Home";
 
 const router = createBrowserRouter([
   {
-    path: "/Home",
+    path: "/",
     element: <Layout></Layout>,
     children: [
       {
-        path: "/Home",
+        path: "/",
         element: <Home></Home>,
         loader: () => fetch("/brandData.json"),
       },

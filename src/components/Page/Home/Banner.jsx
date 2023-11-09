@@ -13,7 +13,7 @@ const Banner = () => {
           className="bg-violet-400 rounded"
         >
           <div className="flex flex-col items-center px-4 py-16 pb-24 mx-auto text-center lg:pb-56 rounded md:py-32 md:px-10 lg:px-32 text-gray-900 top-0 mt-0 pt-0 bg-gradient-to-r from-[#151515] to-[rgba(21,21,21,0)] w-full">
-            <h1 className="text-5xl font-bold sm:text-6xl xl:max-w-3xl text-white">
+            <h1 className="text-5xl font-bold sm:text-6xl xl:max-w-3xl text-secondary">
               Swap, Share, and Style!
             </h1>
             <p className="mt-6 mb-8 text-lg sm:mb-12 xl:max-w-3xl text-white">
@@ -27,7 +27,7 @@ const Banner = () => {
                 Get started
               </Button>
               <Button
-                variant="outlined" 
+                variant="gradient" 
                 color="blue"
               >
                 Learn more
@@ -36,7 +36,7 @@ const Banner = () => {
           </div>
         </div>
         
-        <div className="mx-10 p-6 lg:py-12 mb-12 -mt-20 rounded-lg shadow-md lg:-mt-20 bg-[#A0522D] dark:bg-violet-400 dark:text-gray-900 ">
+        <div className="mx-10 p-6 lg:py-12 mb-12 -mt-20 rounded-lg shadow-md lg:-mt-20 bg-primary dark:bg-violet-400 dark:text-gray-900">
           <div className="container mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between">
               <h2 className="text-center text-5xl font-bold">
@@ -46,7 +46,7 @@ const Banner = () => {
               </h2>
               <div className="space-x-2 text-center py-2 lg:py-0">
                 <span>Plus free shipping! Use code:</span>
-                <span className="font-bold text-lg">MAMBA</span>
+                <span className="font-bold text-lg">TRENDY</span>
               </div>
               <a
                 href="#"
