@@ -1,19 +1,19 @@
 const Footer = () => {
   return (
     <>
-      <footer className="footer flex flex-wrap p-10 justify-around bg-neutral text-neutral-content mt-10">
-        <aside className="flex items-center">
-          <img className="h-32" src="/Logo.png" alt="logo" />
+      <footer className="footer flex flex-wrap p-4 lg:p-10 justify-around bg-neutral text-neutral-content lg:mt-10">
+        <aside className="flex items-center gap-16 lg:gap-0">
+          <img className="h-28" src="/Logo.png" alt="logo" />
           <p>
-            <span className="text-2xl text-amber-400">TRENDY</span>
+            <span className="text-2xl text-primary font-bold ml-12">TRENDY</span>
             <br />© 2023 TRENDY All Rights Reserved.
           </p>
         </aside>
         <nav>
-          <header className="footer-title">Social</header>
+          <header className="footer-title text-center font-bold text-xl">Social</header>
           <div className="grid grid-flow-col gap-4">
-            <div className="grid gap-3">
-              <nav className="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
+            <div className="grid gap-4">
+              <nav className="flex justify-center flex-wrap gap-12 text-gray-500 font-medium">
                 <a className="hover:text-gray-900" href="#">
                   Home
                 </a>
@@ -28,7 +28,7 @@ const Footer = () => {
                 </a>
               </nav>
 
-              <div className="flex justify-center space-x-5">
+              <div className="flex justify-center space-x-14">
                 <a
                   href="https://facebook.com"
                   target="_blank"

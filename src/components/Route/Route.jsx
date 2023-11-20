@@ -4,9 +4,8 @@ import PageTransition from "../FramerMotion/PageTransition";
 import Layout from "../Layout";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../ErrorPage";
-import SignUp from "../Authentication/SignUp";
-import Login from "../Authentication/Login";
 import Home from "../Page/Home/Home";
+import Women from "../Page/Service/Women";
 
 const router = createBrowserRouter([
   {
@@ -16,18 +15,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("/brandData.json"),
+        loader: () => fetch("http://localhost:5000/brand"),
+      },
+      {
+        path: "/Women",
+        element: <Women></Women>,
       },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <Login></Login>,
-  // },
-  // {
-  //   path: "/signUp",
-  //   element: <SignUp></SignUp>,
-  // },
   {
     path: "*",
     element: <ErrorPage></ErrorPage>,

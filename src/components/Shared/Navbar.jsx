@@ -76,7 +76,7 @@ function ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon}, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
@@ -112,17 +112,17 @@ function ProfileMenu() {
 const navListItems = [
   {
     label: "Home",
-    link: "/",
+    link: "",
     icon: UserCircleIcon,
   },
   {
-    label: "Service",
-    link: "/",
+    label: "Women",
+    link: "Women",
     icon: CubeTransparentIcon,
   },
   {
     label: "Jewelry",
-    link: "/",
+    link: "Jewelry",
     icon: CodeBracketSquareIcon,
   },
 ];
@@ -149,9 +149,9 @@ function NavList() {
   const navbarColor = isScrolled ? "text-white" : "text-blue-gray-900";
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-      {navListItems.map(({ label, icon }) => (
+      {navListItems.map(({ label, icon, link }) => (
         <NavLink
-          to={`/${label}`}
+          to={`/${link}`}
           key={label}
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""

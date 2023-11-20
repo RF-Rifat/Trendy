@@ -1,8 +1,6 @@
 // eslint-disable-next-line react/prop-types
 const Brand = ({ element }) => {
   const { name, category, description, imageSrc } = element || {};
-  console.log(category);
-
   return (
     <>
       <div className="flex flex-col items-center p-4">
