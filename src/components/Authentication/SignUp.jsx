@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import "./LoginCard.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthProvider } from "./Provider";
-// import Navbar from "./../Page/Shared/Navbar";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import { ComplexNavbar } from "../Shared/Navbar";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ const SignUp = () => {
             <div className="flex border-l border-gray-200">
               <button
                 onClick={() => toast.dismiss(t.id)}
-                className="w-full h-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="signBtn w-full h-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 Close
               </button>
@@ -124,7 +124,7 @@ const SignUp = () => {
         <title>CINEMA | SignUp</title>
       </Helmet>
       <div className="bg-transparent absolute w-full text-blue-600 px-6 lg:px-20">
-        <Navbar></Navbar>
+        <ComplexNavbar></ComplexNavbar>
       </div>
       <div
         className="inputContainer pt-24 md:pt-10 min-h-[140svh] md:min-h-[100svh]"
@@ -132,9 +132,9 @@ const SignUp = () => {
           backgroundImage: `url("https://images.unsplash.com/photo-1608501078713-8e445a709b39?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
         }}
       >
-        <section className="flex flex-col px-10 py-6 mt-20">
+        <section className="flex flex-col px-10 py-6 mt-20 main">
           <form onSubmit={handleSubmit}>
-            <h1 className="font-semibold text-2xl my-2">
+            <h1 className="font-semibold text-2xl my-2 heading">
               Create a new account{" "}
             </h1>
             <div className="inputBox w-[300px] md:w-[400px] lg:w-[500px]">
@@ -159,7 +159,7 @@ const SignUp = () => {
               </label>
               <Link to={"/"}>Forget Password</Link>
             </div>
-            <button>Log in</button>
+            <button className="signBtn">Log in</button>
             <div className="register text-lg">
               <p>
                 Already have an account
@@ -175,7 +175,7 @@ const SignUp = () => {
               onClick={googlePopUpBtn}
               aria-label="Continue with google"
               role="button"
-              className=" focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border border-gray-700 flex items-center mt-2 justify-center"
+              className="signBtn focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border border-gray-700 flex items-center mt-2 justify-center"
             >
               <svg
                 width={19}

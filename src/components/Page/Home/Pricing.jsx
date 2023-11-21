@@ -62,7 +62,7 @@ const Pricing = () => {
             </a>
           </div>
 
-          <div className="w-full flex-1 p-8 order-1 shadow-xl rounded-3xl bg-gray-900 text-gray-400 sm:w-96 lg:w-full lg:order-2 lg:mt-0 hover:z-50">
+          <div className="w-full flex-1 p-8 order-1 shadow-xl rounded-3xl bg-gray-900 text-gray-400 sm:w-96 lg:w-full lg:order-2 lg:mt-0 hover:z-30">
             <div className="mb-8 pb-8 flex items-center border-b border-gray-600">
               <img
                 src="https://res.cloudinary.com/williamsondesign/abstract-2.jpg"

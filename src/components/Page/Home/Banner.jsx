@@ -30,7 +30,7 @@ const Banner = () => {
                 variant="gradient" 
                 color="blue"
               >
-                Learn more
+                Shop Now
               </Button>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Banner = () => {
                 <br className="sm:hidden" />
                 50% Off
               </h2>
-              <div className="space-x-2 text-center py-2 lg:py-0">
+              <div className="space-x-2 text-center py-2 lg:py-0 select-none">
                 <span>Plus free shipping! Use code:</span>
                 <span className="font-bold text-lg">TRENDY</span>
               </div>

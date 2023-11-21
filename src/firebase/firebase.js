@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD7rE4I3IHQr1LqYDqMBD3UIDnsv_PXpcQ",
-  authDomain: "brand-bites.firebaseapp.com",
-  projectId: "brand-bites",
-  storageBucket: "brand-bites.appspot.com",
-  messagingSenderId: "697929428927",
-  appId: "1:697929428927:web:55b1ff74b27bd39ebd3b0a"
+  apiKey: "AIzaSyBt89tJ0-3oWy76PXQz1eaRT4X5aD249tk",
+  authDomain: "trendy-ec732.firebaseapp.com",
+  projectId: "trendy-ec732",
+  storageBucket: "trendy-ec732.appspot.com",
+  messagingSenderId: "579423246510",
+  appId: "1:579423246510:web:986c3d4a2f33e0a2d2753f"
 };
 
 // Initialize Firebase

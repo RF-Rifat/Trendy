@@ -1,10 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./LoginCard.css";
-// import Navbar from "../Page/Shared/Navbar";
 import { useContext, useState } from "react";
 import { AuthProvider } from "./Provider";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import { ComplexNavbar } from "../Shared/Navbar";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +44,7 @@ const Login = () => {
             <div className="flex border-l border-gray-200">
               <button
                 onClick={() => toast.dismiss(t.id)}
-                className="w-28 md:w-full h-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="signBtn w-28 md:w-full h-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 Close
               </button>
@@ -105,12 +105,12 @@ const Login = () => {
         <title>TRENDY | Login</title>
       </Helmet>
       <div className="bg-transparent absolute w-full text-yellow-400 px-6 lg:px-20">
-        <Navbar></Navbar>
+        <ComplexNavbar></ComplexNavbar>
       </div>
       <div className="inputContainer pt-24 md:pt-10 min-h-[140svh] md:min-h-[100svh]">
-        <section className="flex flex-col px-10 py-6 mt-10">
+        <section className="flex flex-col px-10 py-6 mt-10 main">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-2xl font-semibold my-2">Login</h1>
+            <h1 className="heading text-2xl font-semibold my-2">Login</h1>
             <div className="inputBox w-[300px] md:w-[400px] lg:w-[500px]">
               <ion-icon name="mail-outline"></ion-icon>
               <input type="email" name="email" required />
@@ -128,7 +128,7 @@ const Login = () => {
               </label>
               <Link to={"/"}>Forget Password</Link>
             </div>
-            <button>Log in</button>
+            <button className="signBtn">Log in</button>
             <div className="register text-xl">
               <p>
                 Don&apos;t have a account{" "}
@@ -148,7 +148,7 @@ const Login = () => {
               onClick={handleGooglePopUp}
               aria-label="Continue with google"
               role="button"
-              className=" focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border border-gray-700 flex items-center mt-2 justify-center"
+              className="signBtn focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border border-gray-700 flex items-center mt-2 justify-center"
             >
               <svg
                 width={19}
