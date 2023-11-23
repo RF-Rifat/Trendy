@@ -134,6 +134,11 @@ const navListItems = [
     icon: CodeBracketSquareIcon,
   },
   {
+    label: "ServicesCart",
+    link: "ServiceCart",
+    icon: CodeBracketSquareIcon,
+  },
+  {
     label: "Women",
     link: "Women",
     icon: CubeTransparentIcon,

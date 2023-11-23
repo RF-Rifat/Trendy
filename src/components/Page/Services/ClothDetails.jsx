@@ -5,6 +5,7 @@ import { Button } from "@material-tailwind/react";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import toast, { Toaster } from "react-hot-toast";
 
 const ClothDetails = () => {
   const [startDate, setStartDate] = useState();
@@ -48,11 +49,21 @@ const ClothDetails = () => {
     } else {
       // Dates are not selected
       console.log("Please select start and end dates before buying");
+      // toast.error("Please select start and end dates before buying");
+      toast.error((t) => (
+        <span>
+          Please select start and end dates before buying.
+          <Button className="ml-4" onClick={() => toast.dismiss(t.id)}>
+            Dismiss
+          </Button>
+        </span>
+      ))
     }
   };
 
   return (
     <>
+      <Toaster position="center-right" reverseOrder={false} />
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="px-5 mx-auto">
           <div className="mx-auto flex flex-wrap">

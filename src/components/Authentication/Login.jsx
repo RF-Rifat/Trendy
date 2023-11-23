@@ -9,7 +9,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userLocation = location.state || "/";
-  console.log(userLocation);
   const { login, signWithGooglePop } = useContext(AuthProvider);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");

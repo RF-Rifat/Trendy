@@ -12,7 +12,6 @@ const CartCard = ({ item, setCardData, cardData }) => {
     transform: isOpen ? "scale(1)" : "scale(0)",
   });
 
-  console.log(item);
 
   const toggleTrash = () => {
     setIsOpen(!isOpen);
@@ -73,7 +72,6 @@ const CartCard = ({ item, setCardData, cardData }) => {
     })
       .then((res) => res.json())
       .then((info) => {
-        console.log(info);
         if (info.deletedCount > 0) {
           Swal.fire("Deleted!", "Your Cart has been deleted.", "success");
           const remain = cardData.filter((item) => item._id !== id);

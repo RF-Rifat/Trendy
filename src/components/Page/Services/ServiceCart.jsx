@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import CartCard from "./CartCard";
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthProvider } from "../../Authentication/Provider";
 import EmptyData from "../../Shared/EmptyData";
 import SpecialOffer from "../../Shared/SpecialOffer";
+import CartCard from "../Cart/CartCard";
 
-const MyCart = () => {
+
+const ServiceCart = () => {
   const data = useLoaderData() || {};
   const [cardData, setCardData] = useState([]);
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const MyCart = () => {
   const [tax, setTax] = useState(0);
   const { user } = useContext(AuthProvider);
   const { email } = user;
+  console.log(email);
+
   useEffect(() => {
     const filteredData = data?.filter((item) => item.email === email);
     setCardData(filteredData);
@@ -114,4 +117,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default ServiceCart;

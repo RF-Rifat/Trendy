@@ -11,6 +11,7 @@ import SignUp from "../Authentication/SignUp";
 import MyCart from "../Page/Cart/MyCart";
 import Service from "../Page/Services/Service";
 import ClothDetails from "../Page/Services/ClothDetails";
+import ServiceCart from "../Page/Services/ServiceCart";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({params}) => fetch(`http://localhost:5000/serviceData/${params.id}`),
+      },
+      {
+        path: "/ServiceCart",
+        element: (
+          <PrivateRoute>
+            <PageTransition>
+              <ServiceCart></ServiceCart>
+            </PageTransition>
+          </PrivateRoute>
+        ),
+        loader: () => fetch(`http://localhost:5000/userCartData`),
       },
       {
         path: "/Women",
