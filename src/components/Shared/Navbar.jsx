@@ -129,12 +129,17 @@ const navListItems = [
     icon: UserCircleIcon,
   },
   {
-    label: "Women's Collection",
+    label: "Services",
+    link: "Service",
+    icon: CodeBracketSquareIcon,
+  },
+  {
+    label: "Women",
     link: "Women",
     icon: CubeTransparentIcon,
   },
   {
-    label: "Kid's Collection",
+    label: "Kid",
     link: "Kid",
     icon: CodeBracketSquareIcon,
   },
@@ -180,7 +185,7 @@ function NavList() {
           }
         >
           <Typography
-            as="NavLink"
+            as="div"
             variant="small"
             color="gray"
             className={`font-medium text-lg text-blue-gray-500 text-center ${navbarColor}`}
@@ -245,7 +250,7 @@ export function ComplexNavbar() {
             </div>
             <IconButton
               size="sm"
-              color="black-gray"
+              // color="black-gray"
               variant="text"
               onClick={openDrawer}
               className="ml-auto mr-2 lg:hidden"
