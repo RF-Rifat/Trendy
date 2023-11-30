@@ -4,9 +4,11 @@ import { FcIcons8Cup, FcFullTrash } from "react-icons/fc";
 import { useSpring, animated } from "@react-spring/web";
 import Swal from "sweetalert2";
 import { AuthProvider } from "../../Authentication/Provider";
-const CartCard = ({ item, setCardData, cardData }) => {
+import { useNavigation } from "react-router-dom";
+const CartDetails = ({ item, setCardData, cardData }) => {
   const { setCartNum } = useContext(AuthProvider);
-  const { _id, clothSize, imageLink, price, productTitle } = item || {};
+  const { _id, clothSize, imageLink, price, productTitle, PickUpDate } =
+    item || {};
   const [isOpen, setIsOpen] = useState(false);
   const { transform } = useSpring({
     transform: isOpen ? "scale(1)" : "scale(0)",
@@ -19,54 +21,7 @@ const CartCard = ({ item, setCardData, cardData }) => {
   setCartNum(cardData.length);
   console.log(cardData.length);
   function handleDelete(id) {
-    // const swalWithBootstrapButtons = Swal.mixin({
-    //   customClass: {
-    //     confirmButton: "btn btn-success",
-    //     cancelButton: "btn btn-danger",
-    //   },
-    //   buttonsStyling: false,
-    // });
-
-    // swalWithBootstrapButtons
-    //   .fire({
-    //     title: "Are you sure?",
-    //     text: "You won't be able to revert this!",
-    //     icon: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonText: "Yes, delete it!",
-    //     cancelButtonText: "No, cancel!",
-    //     reverseButtons: true,
-    //   })
-    //   .then((result) => {
-    //     if (result.isConfirmed) {
-    //       fetch(`https://trendy-server.vercel.app/userCartData/${id}`, {
-    //         method: "DELETE",
-    //       })
-    //         .then((res) => res.json())
-    //         .then((info) => {
-    //           console.log(info);
-    //           if (info.deletedCount > 0) {
-    //             Swal.fire("Deleted!", "Your Cart has been deleted.", "success");
-    //             const remain = cardData.filter((item) => item._id !== id);
-    //             setCardData(remain);
-    //             setCartNum(remain.length);
-    //           }
-    //         });
-    //       swalWithBootstrapButtons.fire(
-    //         "Deleted!",
-    //         "Your file has been deleted.",
-    //         "success"
-    //       );
-    //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-    //       swalWithBootstrapButtons.fire(
-    //         "Cancelled",
-    //         "Your imaginary file is safe :)",
-    //         "error"
-    //       );
-    //     }
-    //   });
-
-    fetch(`https://trendy-server.vercel.app/userCartData/${id}`, {
+    fetch(`https://trendy-server.vercel.app/serviceCart/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -79,6 +34,21 @@ const CartCard = ({ item, setCardData, cardData }) => {
         }
       });
   }
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <>
+        <div className="relative flex justify-center items-center">
+          <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+          <img
+            src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+            className="rounded-full h-28 w-28"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div>
@@ -86,8 +56,11 @@ const CartCard = ({ item, setCardData, cardData }) => {
           <table className="w-full">
             <thead>
               <tr>
-                <th className="text-left font-semibold">Product</th>
+                <th className="text-left font-semibold">
+                  Product Image / Name
+                </th>
                 <th className="text-left font-semibold">Cloth Size</th>
+                <th className="text-left font-semibold">Delivery Date</th>
                 <th className="text-left font-semibold">Price</th>
                 <th className="text-center font-semibold">Actions</th>{" "}
                 {/* Add Actions column */}
@@ -110,6 +83,11 @@ const CartCard = ({ item, setCardData, cardData }) => {
                 <td className="py-4">
                   <div className="flex items-center">
                     <span className="text-center">{clothSize}</span>
+                  </div>
+                </td>
+                <td className="py-4">
+                  <div className="flex items-center">
+                    <span className="text-center">{PickUpDate}</span>
                   </div>
                 </td>
                 <td className="py-4">${price}</td>
@@ -140,4 +118,4 @@ const CartCard = ({ item, setCardData, cardData }) => {
   );
 };
 
-export default CartCard;
+export default CartDetails;

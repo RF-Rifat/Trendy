@@ -1,18 +1,19 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
+import { AuthProvider } from "../../Authentication/Provider";
 
 const ClothDetails = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const data = useLoaderData() || {};
   const {
-    _id,
     imageLink,
     productTitle,
     price,
@@ -35,15 +36,53 @@ const ClothDetails = () => {
   const onClickThumb = (index) => {
     console.log(`Clicked on thumb with index ${index}`);
   };
-  const handleBuy = () => {
+
+  const { user } = useContext(AuthProvider);
+
+  const handleAddCart = () => {
     if (startDate && endDate) {
       // Format the dates
       const formattedStartDate = startDate.toLocaleDateString("en-GB");
       const formattedEndDate = endDate.toLocaleDateString("en-GB");
 
-      // Log the formatted dates
-      console.log("Selected Start Date:", formattedStartDate);
-      console.log("Selected End Date:", formattedEndDate);
+      console.log(formattedEndDate);
+      const newUser = {
+        productTitle,
+        price,
+        clothSize,
+        imageLink,
+        displayName: user?.displayName,
+        email: user?.email,
+        PickUpDate: formattedEndDate,
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to add this cart!",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, add it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch("https://trendy-server.vercel.app/serviceCart", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                // setCartNum(cartNum + 1);
+                console.log(data, "added");
+              }
+            });
+          Swal.fire("added!", "Your cart has been added.", "success");
+        }
+      });
 
       // Perform other actions related to buying
     } else {
@@ -57,9 +96,24 @@ const ClothDetails = () => {
             Dismiss
           </Button>
         </span>
-      ))
+      ));
     }
   };
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <>
+        <div className="relative flex justify-center items-center">
+          <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+          <img
+            src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+            className="rounded-full h-28 w-28"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -240,7 +294,7 @@ const ClothDetails = () => {
                   </div>
 
                   <Button
-                    onClick={handleBuy}
+                    onClick={handleAddCart}
                     size="sm"
                     className="text-sm ml-2"
                   >

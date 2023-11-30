@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import PageTransition from "../FramerMotion/PageTransition";
 import Layout from "../Layout";
 import PrivateRoute from "./PrivateRoute";
-import ErrorPage from "../ErrorPage";
 import Home from "../Page/Home/Home";
 import Women from "../Page/Women/Women";
 import KidCloth from "../Page/Kid Cloths/KidCloth";
@@ -12,6 +11,7 @@ import MyCart from "../Page/Cart/MyCart";
 import Service from "../Page/Services/Service";
 import ClothDetails from "../Page/Services/ClothDetails";
 import ServiceCart from "../Page/Services/ServiceCart";
+import ErrorPage from "../Shared/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             <Home></Home>
           </PageTransition>
         ),
-        loader: () => fetch("http://localhost:5000/brand"),
+        loader: () => fetch("https://trendy-server.vercel.app/brand"),
       },
       {
         path: "/Service",
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             </PageTransition>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/serviceData"),
+        loader: () => fetch("https://trendy-server.vercel.app/serviceData"),
       },
       {
         path: "/Service/:id",
@@ -47,7 +47,8 @@ const router = createBrowserRouter([
             </PageTransition>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/serviceData/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://trendy-server.vercel.app/serviceData/${params.id}`),
       },
       {
         path: "/ServiceCart",
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
             </PageTransition>
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:5000/userCartData`),
+        loader: () => fetch(`https://trendy-server.vercel.app/serviceCart`),
       },
       {
         path: "/Women",
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
             <Women></Women>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/womenCloth"),
+        loader: () => fetch("https://trendy-server.vercel.app/womenCloth"),
       },
       {
         path: "/Kid",
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
             <KidCloth></KidCloth>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/kidCloth"),
+        loader: () => fetch("https://trendy-server.vercel.app/kidCloth"),
       },
       {
         path: "/Cart",
@@ -85,8 +86,8 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/userCartData"),
-      }
+        loader: () => fetch("https://trendy-server.vercel.app/userCartData"),
+      },
     ],
   },
   {

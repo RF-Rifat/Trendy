@@ -1,23 +1,62 @@
-import { useLoaderData } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useLoaderData, useNavigation } from "react-router-dom";
 import ClothCard from "../../Shared/ClothCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const KidCloth = () => {
-  const [searchResult, setSearchResult] = useState(null);
+  const data = useLoaderData() || {};
+  const [searchResult, setSearchResult] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Set searchResult to the entire data when the component mounts
+  useEffect(() => {
+    setSearchResult(data);
+  }, [data]);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+
+    // Filter the data based on the selected category
+    const filteredCloths =
+      category === "all"
+        ? data
+        : data.filter(
+            (cloth) => cloth.user.toLowerCase() === category.toLowerCase()
+          );
+
+    // Set the search result state
+    setSearchResult(filteredCloths);
+    console.log(filteredCloths)
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const searchTerm = document.getElementById("default-search").value;
-    // Perform your search logic with searchTerm
-    const result = performSearch(searchTerm);
-    setSearchResult(result);
-  };
 
-  const performSearch = (searchTerm) => {
-    console.log("Search Term:", searchTerm);
-    return "Search Result Placeholder";
+    // Read the input value directly
+    const searchQuery = event.target.elements.searchInput.value.trim();
+
+    // Filter the data based on the search query
+    const filteredCloths = data.filter((cloth) =>
+      cloth.productTitle.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    // Set the search result state
+    setSearchResult(filteredCloths);
   };
-  const data = useLoaderData() || {};
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <>
+        <div className="relative flex justify-center items-center">
+          <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+          <img
+            src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+            className="rounded-full h-28 w-28"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <h1 className="text-3xl font-semibold text-center">SWAP KID&rsquo;S</h1>
@@ -25,15 +64,30 @@ const KidCloth = () => {
       <div>
         <div className="mt-6 md:flex md:items-center md:justify-between px-6 space-y-4 md:space-y-0">
           <div className="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-            <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300">
+            <button
+              className={`px-5 py-2 text-xs font-medium transition-colors duration-200 sm:text-sm ${
+                selectedCategory === "all" ? "bg-gray-100" : ""
+              } dark:bg-gray-800 dark:text-gray-300`}
+              onClick={() => handleCategoryChange("all")}
+            >
               View all
             </button>
 
-            <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+            <button
+              className={`px-5 py-2 text-xs font-medium transition-colors duration-200 sm:text-sm ${
+                selectedCategory === "Boy" ? "bg-gray-100" : ""
+              } dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100`}
+              onClick={() => handleCategoryChange("Boy")}
+            >
               BOYS
             </button>
 
-            <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+            <button
+              className={`px-5 py-2 text-xs font-medium transition-colors duration-200 sm:text-sm ${
+                selectedCategory === "Girl" ? "bg-gray-100" : ""
+              } dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100`}
+              onClick={() => handleCategoryChange("Girl")}
+            >
               GIRLS
             </button>
           </div>
@@ -66,6 +120,7 @@ const KidCloth = () => {
               <input
                 type="search"
                 id="default-search"
+                name="searchInput"
                 className="block w-full md:w-80 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Your Dress"
                 required
@@ -81,7 +136,7 @@ const KidCloth = () => {
         </div>
 
         <div className="mx-auto grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data?.map((item, idx) => (
+          {searchResult?.map((item, idx) => (
             <ClothCard item={item} key={idx}></ClothCard>
           ))}
         </div>

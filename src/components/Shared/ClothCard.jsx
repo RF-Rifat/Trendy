@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { AuthProvider } from "../Authentication/Provider";
+import { useNavigation } from "react-router-dom";
 
 const ClothCard = ({ item }) => {
   const { user } = useContext(AuthProvider);
@@ -28,7 +29,7 @@ const ClothCard = ({ item }) => {
       confirmButtonText: "Yes, add it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:5000/userCartData", {
+        fetch("https://trendy-server.vercel.app/userCartData", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -46,6 +47,20 @@ const ClothCard = ({ item }) => {
       }
     });
   };
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <>
+        <div className="relative flex justify-center items-center">
+          <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+          <img
+            src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+            className="rounded-full h-28 w-28"
+          />
+        </div>
+      </>
+    );
+  }
   return (
     <div>
       <div className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300">

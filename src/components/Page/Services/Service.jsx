@@ -1,13 +1,21 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useLoaderData } from "react-router-dom";
+// eslint-disable react-hooks/exhaustive-deps
+import { useNavigation } from "react-router-dom";
 import SpecialOffer from "../../Shared/SpecialOffer";
 import ServiceCard from "./ServiceCard";
 import { useEffect, useState } from "react";
 
 const Service = () => {
-  const data = useLoaderData() || {};
+  // const data = useLoaderData() || {};
+  const [data, setData] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  useEffect(() => {
+    fetch("https://trendy-server.vercel.app/serviceData", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((info) => setData(info));
+  }, []);
 
   // Set searchResult to the entire data when the component mounts
   useEffect(() => {
@@ -18,9 +26,12 @@ const Service = () => {
     setSelectedCategory(category);
 
     // Filter the data based on the selected category
-    const filteredCloths = category === "all"
-      ? data
-      : data.filter((cloth) => cloth.gender.toLowerCase() === category.toLowerCase());
+    const filteredCloths =
+      category === "all"
+        ? data
+        : data.filter(
+            (cloth) => cloth.gender.toLowerCase() === category.toLowerCase()
+          );
 
     // Set the search result state
     setSearchResult(filteredCloths);
@@ -28,7 +39,7 @@ const Service = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     // Read the input value directly
     const searchQuery = event.target.elements.searchInput.value.trim();
 
@@ -41,7 +52,20 @@ const Service = () => {
     setSearchResult(filteredCloths);
   };
 
-  console.log(searchResult)
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <>
+        <div className="relative flex justify-center items-center">
+          <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
+          <img
+            src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
+            className="rounded-full h-28 w-28"
+          />
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="p-4 space-y-10">
@@ -49,15 +73,24 @@ const Service = () => {
       {/* search bar for filtering the data */}
       <div className="mt-6 md:flex md:items-center md:justify-between px-6 space-y-4 md:space-y-0">
         <div className="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-          <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300" onClick={() => handleCategoryChange('all')}>
+          <button
+            className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300"
+            onClick={() => handleCategoryChange("all")}
+          >
             View all
           </button>
 
-          <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100" onClick={() => handleCategoryChange('Boy')}>
+          <button
+            className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            onClick={() => handleCategoryChange("Boy")}
+          >
             BOYS
           </button>
 
-          <button className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100" onClick={() => handleCategoryChange('Girl')}>
+          <button
+            className="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            onClick={() => handleCategoryChange("Girl")}
+          >
             GIRLS
           </button>
         </div>
@@ -105,7 +138,7 @@ const Service = () => {
         </form>
       </div>
       <div className="mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-10">
+        <div className="grid gap-10">
           {searchResult?.map((item, idx) => (
             <ServiceCard key={idx} item={item}></ServiceCard>
           ))}

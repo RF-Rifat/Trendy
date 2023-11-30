@@ -23,7 +23,7 @@ const Login = () => {
       return;
     }
     login(email, password)
-      .then((result) => {
+      .then(() => {
         setSuccess("Your Email is successfully logIn");
         toast.custom((t) => (
           <div
@@ -50,7 +50,6 @@ const Login = () => {
             </div>
           </div>
         ));
-        console.log(result.user);
         event.target.reset();
         navigate(userLocation);
       })

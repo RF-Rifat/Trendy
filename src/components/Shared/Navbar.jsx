@@ -12,19 +12,21 @@ import {
   Badge,
 } from "@material-tailwind/react";
 import {
-  CubeTransparentIcon,
+  TableCellsIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
   ChevronDownIcon,
-  Cog6ToothIcon,
   InboxArrowDownIcon,
-  PowerIcon,
-  Bars2Icon,
+  Bars3Icon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
 } from "@heroicons/react/24/solid";
 import { Link, NavLink } from "react-router-dom";
 import { AuthProvider } from "../Authentication/Provider";
 
 // profile menu component
+
+
+
 
 function ProfileMenu() {
   const { user, logOut } = useContext(AuthProvider);
@@ -131,27 +133,27 @@ const navListItems = [
   {
     label: "Services",
     link: "Service",
-    icon: CodeBracketSquareIcon,
+    icon: TableCellsIcon,
   },
   {
     label: "ServicesCart",
     link: "ServiceCart",
-    icon: CodeBracketSquareIcon,
+    icon: ShoppingCartIcon,
   },
   {
     label: "Women",
     link: "Women",
-    icon: CubeTransparentIcon,
+    icon: ShoppingBagIcon,
   },
   {
     label: "Kid",
     link: "Kid",
-    icon: CodeBracketSquareIcon,
+    icon: ShoppingBagIcon,
   },
   {
     label: "My Cart",
     link: "Cart",
-    icon: CodeBracketSquareIcon,
+    icon: ShoppingCartIcon,
   },
 ];
 
@@ -260,7 +262,7 @@ export function ComplexNavbar() {
               onClick={openDrawer}
               className="ml-auto mr-2 lg:hidden"
             >
-              <Bars2Icon className={open ? "h-6 w-6 rotate-90" : "h-6 w-6"} />
+              <Bars3Icon className={open ? "h-6 w-6 rotate-90" : "h-6 w-6"} />
             </IconButton>
 
             <div className="flex gap-3 items-center">
@@ -287,7 +289,7 @@ export function ComplexNavbar() {
             to={"/"}
             className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
           >
-            <img className="h-20 " src="Logo.png" alt="logo" />
+            <img className="h-20 " src="/Logo.png" alt="logo" />
           </Link>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
             <svg

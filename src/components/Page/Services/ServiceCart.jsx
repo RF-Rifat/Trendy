@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { AuthProvider } from "../../Authentication/Provider";
 import EmptyData from "../../Shared/EmptyData";
 import SpecialOffer from "../../Shared/SpecialOffer";
-import CartCard from "../Cart/CartCard";
+import CartDetails from "./CartDetails";
 
 
 const ServiceCart = () => {
@@ -74,7 +74,7 @@ const ServiceCart = () => {
           <div className="grid md:grid-flow-col gap-4 relative">
             <div className="grid w-full">
               {cardData?.map((item, idx) => (
-                <CartCard
+                <CartDetails
                   key={idx}
                   item={item}
                   cardData={cardData}

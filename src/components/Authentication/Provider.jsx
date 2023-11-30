@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase";
+import axios from "axios";
 
 export const AuthProvider = createContext(null);
 
@@ -22,19 +23,19 @@ const Provider = ({ children }) => {
   const gitHubProvider = new GithubAuthProvider();
 
   const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
   const login = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const updateUser = (name) => {
     return updateProfile(auth.currentUser, {
-      displayName: name
-    })
-  }
+      displayName: name,
+    });
+  };
 
   const signWithGooglePop = () => {
     return signInWithPopup(auth, googleProvider);
@@ -44,20 +45,38 @@ const Provider = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true)
+    setLoading(true);
     return signOut(auth);
   };
 
-
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
-      setLoading(false)
+      setLoading(false);
+      if (currentUser) {
+        axios
+          .post("https://trendy-server.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      } else {
+        axios
+          .post("https://trendy-server.vercel.app/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const AuthData = {
     createUser,
@@ -69,7 +88,7 @@ const Provider = ({ children }) => {
     signWithGitHubPop,
     updateUser,
     setCartNum,
-    cartNum
+    cartNum,
   };
 
   return (
