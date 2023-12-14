@@ -2,6 +2,7 @@ import Banner from "./Banner";
 import Brand from "./Brands";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import Pricing from "./Pricing";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const data = useLoaderData();
@@ -21,6 +22,9 @@ const Home = () => {
   }
   return (
     <>
+      <Helmet>
+        <title>TRENDY | HOME</title>
+      </Helmet>
       <Banner></Banner>
       {/* Brands card */}
       <section className="text-text p-4 rounded-md">
